@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" *ngIf="compte">
+  <form class="ion-padding" [formGroup]="editProfileForm" *ngIf="compte" (ngSubmit)="updateProfile()">
+
+  <ion-item *ngIf="fileUploadedPath | async as fileUrl">
+    <ion-img
+      style="
+        width: 170px;
+        height: 170px;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
+      "
+      [src]="fileUrl"
+    ></ion-img>
+  </ion-item>
+  <ion-item>
+    <input
+      type="file"
+      class="upload"
+      (change)="fileUpload($event.target.files)"
+    />
+  </ion-item>
+  <ion-item>
+    <ion-label>Nom</ion-label>
+    <ion-input type="text" value="{{compte.nom}}"   name="nom" [(ngModel)]="compte.nom" disabled="true"  formControlName="nom"  disabled="{{modified}}"> </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Prenom</ion-label>
+    <ion-input type="text" value="{{compte.prenom}} "  name="prenom" [(ngModel)]="compte.prenom" disabled="true"  formControlName="prenom"  disabled="{{modified}}">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input type="email" value="{{compte.email}}"  nom="email" [(ngModel)]="compte.email" disabled="true"   formControlName="email"  disabled="{{modified}}">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tel</ion-label>
+    <ion-input type="Tel" value="{{compte.tel}}" nom="tel"  [(ngModel)]="compte.tel" disabled="true"  formControlName="tel"  disabled="{{modified}}"> </ion-input>
+  </ion-item>
+  <ion-button expand="block" fill="outline" *ngIf="!this.modified" type="ngSubmit"> Enregistrer</ion-button>
+  <ion-button expand="block" fill="outline" (click)="modifier()">Modifier</ion-button>
+  </form>
+</ion-content>
