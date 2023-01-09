@@ -30,4 +30,3 @@ npm-debug.log*
 /plugins
 /www
 /.angular
-/src/environments
