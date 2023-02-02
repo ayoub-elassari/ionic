@@ -175,35 +175,36 @@ export class DetailContactPage implements OnInit {
   }
 
   email() {
-     const mytext = prompt('Ecrivez votre message');
+    const mytext = prompt('Ecrivez votre message');
     const email = {
-      to: this.contact.email, subject: 'Demmand de service : '+this.contact.service,
+      to: this.contact.email,
+      subject: 'Demmand de service : ' + this.contact.service,
       body: mytext,
-      isHtml: true
+      isHtml: true,
     };
     this.emailComposer.open(email);
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   GPS(): void {
-//      this.geolocation.getCurrentPosition().then((resp) => {
-//       const localisationCoordinates =  resp.coords.latitude.toString() + ',' + resp.coords.longitude.toString();
-//       //
-//       this.socialSharing.shareViaWhatsAppToReceiver(this.contact.tel,
-//         'Ma localisation est  \n  ' +  'https://www.google.com/maps/@'+localisationCoordinates, null).then(() => {
-// // Success!
-//       }).catch(() => {
-// // Error!
-//       });
-//       console.log(this.locationUrl);
-//     }).catch((error) => {
-//       console.log('Error getting location', error);
-//     });
-//     return '';
+    //      this.geolocation.getCurrentPosition().then((resp) => {
+    //       const localisationCoordinates =  resp.coords.latitude.toString() + ',' + resp.coords.longitude.toString();
+    //       //
+    //       this.socialSharing.shareViaWhatsAppToReceiver(this.contact.tel,
+    //         'Ma localisation est  \n  ' +  'https://www.google.com/maps/@'+localisationCoordinates, null).then(() => {
+    // // Success!
+    //       }).catch(() => {
+    // // Error!
+    //       });
+    //       console.log(this.locationUrl);
+    //     }).catch((error) => {
+    //       console.log('Error getting location', error);
+    //     });
+    //     return '';
   }
 
   sendSMS() {
-    this.sms.send(this.contact.tel, 'Bonjour, je suis yassir el koraichi je vous envoie un sms', {
+    this.sms.send(this.contact.tel, 'Bonjour, je suis ayoub', {
       replaceLineBreaks: false, // true to replace \n by a new line, false by default
       android: {
         intent: 'INTENT', // send SMS with the native android SMS messaging
@@ -213,19 +214,33 @@ export class DetailContactPage implements OnInit {
   }
 
   sharing() {
-   this.geolocation.getCurrentPosition().then((resp) => {
-      const localisationCoordinates =  resp.coords.latitude.toString() + ',' + resp.coords.longitude.toString();
-      //
-      this.socialSharing.shareViaWhatsAppToReceiver(this.contact.tel,
-        'Ma localisation est  \n  ' +  'https://www.google.com/maps/@'+localisationCoordinates, null).then(() => {
-// Success!
-      }).catch(() => {
-// Error!
+    this.geolocation
+      .getCurrentPosition()
+      .then((resp) => {
+        const localisationCoordinates =
+          resp.coords.latitude.toString() +
+          ',' +
+          resp.coords.longitude.toString();
+        //
+        this.socialSharing
+          .shareViaWhatsAppToReceiver(
+            this.contact.tel,
+            'Ma localisation est  \n  ' +
+              'https://www.google.com/maps/@' +
+              localisationCoordinates,
+            null
+          )
+          .then(() => {
+            // Success!
+          })
+          .catch(() => {
+            // Error!
+          });
+        console.log(this.locationUrl);
+      })
+      .catch((error) => {
+        console.log('Error getting location', error);
       });
-      console.log(this.locationUrl);
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
   }
 
   fileUpload(event: FileList) {

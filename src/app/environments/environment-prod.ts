@@ -1,11 +1,11 @@
 export const environment = {
-    production: true,
-    firebaseConfig: {
-        apiKey: "AIzaSyC5TawBOeKK79x89UezZzMgD3OwMzlhUzc",
-        authDomain: "atelier-ionic.firebaseapp.com",
-        projectId: "atelier-ionic",
-        storageBucket: "atelier-ionic.appspot.com",
-        messagingSenderId: "489459306525",
-        appId: "1:489459306525:web:9ce0a140578325319eb6f4"
-    }
-  };
+  production: true,
+  firebaseConfig: {
+    apiKey: 'AIzaSyBr6mIO_RLwRxwwZ-KlQOq5K4DAoWTFEjE',
+    authDomain: 'ionic-project-2cdfe.firebaseapp.com',
+    projectId: 'ionic-project-2cdfe',
+    storageBucket: 'ionic-project-2cdfe.appspot.com',
+    messagingSenderId: '36301063049',
+    appId: '1:36301063049:web:bfa3a3e3264f5b84a6d758',
+  },
+};

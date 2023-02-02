@@ -25,12 +25,14 @@ export class AppComponent implements OnInit {
     { title: 'Profile', url: '/profile', icon: 'heart' },
     { title: 'Deconnexion', url: '/deconnexion', icon: 'archive' },
   ];
+  isDark: string;
   constructor(
     private route: ActivatedRoute,
     private fireauth: ContactAuthService,
     private navCtrl: NavController,
     private angularFireStorage: AngularFireStorage
   ) {
+    this.isDark = localStorage.getItem('isDark');
     /*
     this.test = 'test@gmail.Com';
     this.route.queryParams.subscribe((params) => {
@@ -58,5 +60,26 @@ export class AppComponent implements OnInit {
       }
     );
     //console.log();
+  }
+  toggleDark(ev: any) {
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+    systemDark.addEventListener('change', (e) => {
+      this.colorTest(e);
+    });
+    if (ev.detail.checked) {
+      localStorage.setItem('isDark', 'true');
+      document.body.setAttribute('data-theme', 'dark');
+    } else {
+      localStorage.setItem('isDark', 'false');
+      document.body.setAttribute('data-theme', 'light');
+    }
+  }
+
+  colorTest(systemInitiatedDark: { matches: any }) {
+    if (systemInitiatedDark.matches) {
+      document.body.setAttribute('data-theme', 'dark');
+    } else {
+      document.body.setAttribute('data-theme', 'light');
+    }
   }
 }
